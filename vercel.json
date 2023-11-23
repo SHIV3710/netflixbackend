@@ -1,0 +1,6 @@
+{
+    "version":2,
+    "name":"netfli_clone_api",
+    "builds":[{"src":"server.js","use":"@vercel/node"}],
+    "routes":[{"src":"/(.*)","dest":"/server.js"}]
+}
