@@ -4,7 +4,8 @@ const Movie = require("../models/movie");
 
 module.exports.getLikedMovies = async (req, res) => {
   try {
-    const { email } = req.body;
+    const { email } = req.query;
+    console.log(email);
     const movies = [];
 
     const user = await User.findOne({ email });
@@ -15,6 +16,8 @@ module.exports.getLikedMovies = async (req, res) => {
         message: "Login First",
       });
     }
+
+    console.log(user);
 
     const findmovie = async (id) => { 
       return await Movie.findById(id); 
@@ -35,7 +38,7 @@ module.exports.getLikedMovies = async (req, res) => {
       }
     }
 
-    console.log(movies);
+    // console.log(movies);
     
     return res.status(200).send({
       success: true,
@@ -152,6 +155,7 @@ module.exports.adduser = async(req,res) => {
   try {
     
     const {email,password} = req.body;
+    console.log(email,password);
 
     let user = await User.findOne({email,password});
 
@@ -210,7 +214,6 @@ module.exports.login = async (req,res) => {
 
 module.exports.logout = async (req,res) => {
   try {
-
     return res.status(200).json({
       success: true,
       message:"Logout successfully",
