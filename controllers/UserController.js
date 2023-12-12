@@ -187,7 +187,7 @@ module.exports.adduser = async(req,res) => {
 module.exports.login = async (req,res) => {
   try {
 
-    const {email,password} = req.body;
+    const {email,password} = req.query;
 
     const user = await User.findOne({email,password});
 
