@@ -5,7 +5,7 @@ require("dotenv").config({path: "./config.env"})
 //Using middleware
 app.use(express.json());
 app.get('/',(req,res)=>{
-    res.send('hii this is api');
+    res.send('the api is running omg');
 })
 
 const allowCors = fn => async (req, res) => {
