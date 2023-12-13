@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");  
-const cors = require("cors");
+// const cors = require("cors");
 
 // require("dotenv").config({path: "Backend/config/config.env"})
 require("dotenv").config({path: "./config.env"})
@@ -10,14 +10,24 @@ require("dotenv").config({path: "./config.env"})
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(
-    cors({
-      origin: "*",
-    })
-  );
 app.get('/',(req,res)=>{
     res.send('hii this is api');
 })
+
+const allowCors = fn => async (req, res) => {
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    )
+    if (req.method === 'OPTIONS') {
+      res.status(200).end()
+      return
+    }
+    return await fn(req, res)
+  }
 
 require("dotenv").config({path: "backend/config/config.env"})
 
@@ -25,4 +35,4 @@ const user = require("./routes/UserRoutes");
 
 app.use("/api",user);
 
-module.exports = app;
+module.exports = allowCors(app);
