@@ -38,7 +38,7 @@ module.exports.getLikedMovies = async (req, res) => {
       }
     }
 
-    // console.log(movies);
+    console.log(movies);
     
     return res.status(200).send({
       success: true,

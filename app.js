@@ -10,7 +10,11 @@ require("dotenv").config({path: "./config.env"})
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
+app.use(
+    cors({
+      origin: "*",
+    })
+  );
 app.get('/',(req,res)=>{
     res.send('hii this is api');
 })
