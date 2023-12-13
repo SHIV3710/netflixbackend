@@ -23,12 +23,10 @@ const allowCors = fn => async (req, res) => {
     return await fn(req, res)
   }
 
-app.use(allowCors);
-
 require("dotenv").config({path: "backend/config/config.env"})
 
 const user = require("./routes/UserRoutes");
 
 app.use("/api",user);
 
-module.exports = app;
+module.exports = allowCors(app);
