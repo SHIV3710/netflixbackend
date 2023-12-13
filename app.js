@@ -1,15 +1,9 @@
 const express = require("express");
-const app = express();
-const cookieParser = require("cookie-parser");  
-// const cors = require("cors");
-
-// require("dotenv").config({path: "Backend/config/config.env"})
+const app = express();  
 require("dotenv").config({path: "./config.env"})
 
 //Using middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.get('/',(req,res)=>{
     res.send('hii this is api');
 })
@@ -29,10 +23,12 @@ const allowCors = fn => async (req, res) => {
     return await fn(req, res)
   }
 
+app.use(allowCors);
+
 require("dotenv").config({path: "backend/config/config.env"})
 
 const user = require("./routes/UserRoutes");
 
 app.use("/api",user);
 
-module.exports = allowCors(app);
+module.exports = app;
