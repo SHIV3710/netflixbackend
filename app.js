@@ -35,4 +35,4 @@ const user = require("./routes/UserRoutes");
 
 app.use("/api",user);
 
-module.exports = allowCors(app);
+module.exports = app;
