@@ -7,7 +7,26 @@ app.use(express.json());
 app.get('/',(req,res)=>{
     res.send('the api is running omg');
 })
-app.use(cors);
+// app.use(cors);
+
+const allowCors = fn => async (req, res) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+  if (req.method === 'OPTIONS') {
+    res.status(200).end()
+    return
+  }
+  return await fn(req, res)
+}
+
+
 
 
 require("dotenv").config({path: "backend/config/config.env"})
@@ -16,4 +35,4 @@ const user = require("./routes/UserRoutes");
 
 app.use("/api",user);
 
-module.exports = app;
+module.exports = allowCors(app);
