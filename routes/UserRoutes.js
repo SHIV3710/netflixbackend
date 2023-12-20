@@ -5,7 +5,7 @@ const {
   adduser,
   logout,
   login,
-} = require("../controllers/UserController");
+} = require("../api/UserController");
 
 const router = require("express").Router();
 
