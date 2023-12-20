@@ -53,7 +53,8 @@ module.exports.getLikedMovies = async (req, res) => {
 
 module.exports.addToLikedMovies = async (req, res) => {
   try {
-    const {email,data} = req.query;
+    const {email,data} = req.body;
+    console.log(email,data);
 
     const user = await User.findOne({email}); 
     
@@ -110,7 +111,7 @@ module.exports.addToLikedMovies = async (req, res) => {
 
 module.exports.removeFromLikedMovies = async (req, res) => {
   try {
-    const {email,name} = req.query;
+    const {email,name} = req.body;
 
     const user = await User.findOne({email}); 
     console.log(email);
@@ -154,7 +155,7 @@ module.exports.removeFromLikedMovies = async (req, res) => {
 module.exports.adduser = async(req,res) => {
   try {
     
-    const {email,password} = req.query;
+    const {email,password} = req.body;
     console.log(email,password);
 
     let user = await User.findOne({email,password});
@@ -187,7 +188,7 @@ module.exports.adduser = async(req,res) => {
 module.exports.login = async (req,res) => {
   try {
 
-    const {email,password} = req.query;
+    const {email,password} = req.body;
 
     const user = await User.findOne({email,password});
 
