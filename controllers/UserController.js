@@ -156,9 +156,9 @@ module.exports.adduser = async(req,res) => {
   try {
     
     const {email,password} = req.body;
-    console.log(email,password);
-
+    
     let user = await User.findOne({email,password});
+    console.log(email,password);
 
     if(user){
       return res.status(400).json({success: false, message: "User already exists"});

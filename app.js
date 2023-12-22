@@ -3,12 +3,14 @@ const app = express();
 require("dotenv").config({path: "./config.env"})
 const cors = require("cors");
 
+
 //Using middleware
 app.use(express.json());
 app.get('/',(req,res)=>{
     res.send('the api is running omg');
 })
 app.use(cors());
+app.use(express.urlencoded({extended:true}));
 
 require("dotenv").config({path: "backend/config/config.env"})
 
