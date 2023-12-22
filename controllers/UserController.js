@@ -4,7 +4,7 @@ const Movie = require("../models/movie");
 
 module.exports.getLikedMovies = async (req, res) => {
   try {
-    const { email } = req.query;
+    const { email } = req.body;
     console.log(email);
     const movies = [];
 
@@ -188,7 +188,7 @@ module.exports.adduser = async(req,res) => {
 module.exports.login = async (req,res) => {
   try {
 
-    const {email,password} = req.query;
+    const {email,password} = req.body;
 
     const user = await User.findOne({email,password});
 
