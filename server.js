@@ -5,7 +5,8 @@ require("dotenv").config({path: "./config"})
 
 connectDatabase();
 
-app.listen(process.env.PORT,(req,res)=>{
-    console.log(`Server is runnning`);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
 
