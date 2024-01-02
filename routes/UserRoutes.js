@@ -9,7 +9,7 @@ const {
 
 const router = require("express").Router();
 
-router.get("/liked", getLikedMovies);
+router.put("/liked", getLikedMovies);
 router.post("/add", addToLikedMovies);
 router.put("/remove", removeFromLikedMovies);
 router.post("/register",adduser);

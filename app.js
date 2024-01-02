@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();  
+
 require("dotenv").config({path: "./config.env"})
 const cors = require("cors");
 
@@ -11,6 +12,7 @@ app.get('/',(req,res)=>{
 })
 app.use(cors());
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 require("dotenv").config({path: "backend/config/config.env"})
 
